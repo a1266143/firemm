@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">firemm</string>
+    <string name="action_settings">随机穿越</string>
+    <string name="service_name">服务中心</string>
+    <string name="chooseDate">选择日期</string>
+    <string name="shoucang">收藏</string>
+    <string name="set">设置</string>
+    <string name="gonggaopai">公告牌</string>
+    <string name="recommand">精彩应用推荐</string>
+    <string name="duanzi">段子</string>
+    <string name="qutu">趣图</string>
+    <string name="shipin">视频</string>
+    <string name="zhuanji">美女</string>
+    <string name="title_activity_set">SetActivity</string>
+    <string name="hello_world">Hello world!</string>
+
+</resources>

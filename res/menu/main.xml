@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/random"
+        android:title="@string/action_settings"/>
+    <item
+        android:id="@+id/chooseDate"
+        android:title="@string/chooseDate"/>
+    <item
+        android:id="@+id/shoucang"
+        android:title="@string/shoucang"/>
+    <item
+        android:id="@+id/set"
+        android:title="@string/set"/>
+    <item
+        android:id="@+id/gonggaopai"
+        android:title="@string/gonggaopai"/>
+    <item
+        android:id="@+id/recommand"
+        android:title="@string/recommand"/>
+
+</menu>

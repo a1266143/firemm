@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_menu_relativelayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical" >
+    
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/menuback"/> 
+        
+    <!-- <Button 
+        android:id="@+id/fragment_menu_Btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="测试按钮"/> -->
+    
+    <ListView
+        android:id="@+id/fragment_menu_listView" 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#00000000"
+        />
+
+</RelativeLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:background="#4a86e8"
+    android:orientation="vertical" >
+    
+    <Button 
+        android:id="@+id/titlebar_fenlei"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="分类"
+        android:background="#00000000"
+        android:textColor="#ffffff"
+        android:textSize="12sp"
+        android:layout_centerVertical="true"
+        />
+    
+    <LinearLayout 
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal">
+        <Button 
+            android:id="@+id/titlebar_duanzi"
+            style="@style/topbtnStyle"
+            android:background="@drawable/leftbtn_press_true"
+            android:textColor="#4a86e8"
+            android:text="@string/duanzi"/>
+        <Button 
+            android:id="@+id/titlebar_qutu"
+            style="@style/topbtnStyle"
+            android:background="@drawable/topbuttonback"
+            android:text="@string/qutu"/>
+        <Button 
+            android:id="@+id/titlebar_shipin"
+            style="@style/topbtnStyle"
+            android:background="@drawable/topbuttonback"
+            android:text="@string/shipin"/>
+        <Button 
+            android:id="@+id/titlebar_zhuanji"
+            style="@style/topbtnStyle"
+            android:background="@drawable/rightbtn_press_false"
+            android:text="@string/zhuanji"/>
+    </LinearLayout>
+    
+    
+    <com.jiuwu.view.MenuView 
+        android:id="@+id/titlebar_menu"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>

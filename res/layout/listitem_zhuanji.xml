@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    android:background="@drawable/listitemback"
+     >
+    
+    <ImageView 
+        android:id="@+id/listitem_zhuanji_imageview"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:scaleType="center"
+        android:src="@drawable/refresh"/>
+    
+    <TextView 
+        android:id="@+id/listitem_zhuanji_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:lineSpacingExtra="2dp"
+        android:gravity="left"
+        android:text="[2015-12-12]每日美女欣赏"
+        android:ellipsize="end"
+        android:layout_toRightOf="@id/listitem_zhuanji_imageview"
+        android:maxLines="2"/>
+    
+    <TextView 
+        android:id="@+id/listitem_zhuanji_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/listitem_zhuanji_imageview"
+        android:layout_toRightOf="@id/listitem_zhuanji_imageview"
+        android:layout_marginLeft="10dp"
+        android:textSize="12sp"
+        android:textColor="#aaa"
+        android:text="12-10 08:00"
+        />
+    
+    <TextView 
+        android:id="@+id/listitem_zhuanji_dianzan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#aaa"
+        android:text="690"
+       android:gravity="center"
+        android:drawableLeft="@drawable/dianzan"
+        android:drawablePadding="5dp"
+        android:layout_alignBottom="@id/listitem_zhuanji_imageview"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>
