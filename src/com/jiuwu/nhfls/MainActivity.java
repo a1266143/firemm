@@ -6,7 +6,10 @@ import com.baidu.ops.appunion.sdk.banner.BaiduBanner;
 import com.baidu.ops.appunion.sdk.banner.BannerType;
 import com.example.nhfls.R;
 import com.jiuwu.fragment.Fragment_duanzi;
-import com.jiuwu.fragment.Fragment_fenlei;
+import com.jiuwu.fragment.Fragment_fenlei_duanzi;
+import com.jiuwu.fragment.Fragment_fenlei_meinv;
+import com.jiuwu.fragment.Fragment_fenlei_qutu;
+import com.jiuwu.fragment.Fragment_fenlei_shipin;
 import com.jiuwu.fragment.Fragment_qutu;
 import com.jiuwu.fragment.Fragment_shipin;
 import com.jiuwu.fragment.Fragment_zhuanji;
@@ -41,11 +44,14 @@ public class MainActivity extends Activity {
 	private Fragment_qutu fragment_qt;
 	private Fragment_shipin fragment_sp;
 	private Fragment_zhuanji fragment_zj;
-	private Fragment_fenlei fragment_fl;
+	private Fragment_fenlei_qutu fragment_fl_qutu;
+	private Fragment_fenlei_duanzi fragment_fl_duanzi;
+	private Fragment_fenlei_shipin fragment_fl_shipin;
+	private Fragment_fenlei_meinv fragment_fl_meinv;
 	private Button titlebar_duanzi, titlebar_qutu, titlebar_shipin,
-			titlebar_zhuanji,titlebar_fenlei;
+			titlebar_zhuanji, titlebar_fenlei;
 	private View menuBtn;
-	
+
 	private boolean isShown;
 
 	// 侧滑菜单FrameLayout
@@ -71,11 +77,11 @@ public class MainActivity extends Activity {
 		AppUnionSDK.getInstance(this).initSdk();
 		setContentView(R.layout.activity_main);
 		// *****************显示插屏广告***********************
-		showTableScreenAd();
-		//*****************显示图文广告***********************
+		//showTableScreenAd();
+		// *****************显示图文广告***********************
 		showImageTextAd();
-		//****************************************************
-		//初始化
+		// ****************************************************
+		// 初始化
 		init();
 		// 设置侧滑菜单相关属性
 		setDrawerLayout();
@@ -84,27 +90,29 @@ public class MainActivity extends Activity {
 			Intent intent = new Intent(SERVICE_ACTION);
 			startService(intent);
 		}
-		//连接网络
+		// 连接网络
 		new Thread(new Runnable() {
-			
+
 			@Override
 			public void run() {
-				//连接网络获取json数据
-				String s = NetUtils.getJson(NetUtils.getUrl("视频",""+1, ""+1, ""+20, ""+System.currentTimeMillis(), ""+1));
+				// 连接网络获取json数据
+				String s = NetUtils.getJson(NetUtils.getUrl("视频", "" + 1,
+						"" + 1, "" + 20, "" + System.currentTimeMillis(),
+						"" + 1));
 				Log.e("json", s);
 			}
 		}).start();
 	}
-	
+
 	/**
 	 * 初始化
 	 */
-	public void init(){
+	public void init() {
 		fragment_dz = new Fragment_duanzi();
 		fragment_qt = new Fragment_qutu();
 		fragment_sp = new Fragment_shipin();
 		fragment_zj = new Fragment_zhuanji();
-		
+
 		getFragmentManager().beginTransaction()
 				.replace(R.id.frameLayout, fragment_dz).commit();
 		titlebar_duanzi = (Button) findViewById(R.id.titlebar_duanzi);
@@ -269,23 +277,23 @@ public class MainActivity extends Activity {
 			switch (view.getId()) {
 			// 段子按钮
 			case R.id.titlebar_duanzi:
-				changeColor(R.id.titlebar_duanzi);
 				currentMenuValue = DUANZI;
+				changeColor(R.id.titlebar_duanzi);
 				break;
 			// 趣图按钮
 			case R.id.titlebar_qutu:
-				changeColor(R.id.titlebar_qutu);
 				currentMenuValue = QUTU;
+				changeColor(R.id.titlebar_qutu);
 				break;
 			// 视频按钮
 			case R.id.titlebar_shipin:
-				changeColor(R.id.titlebar_shipin);
 				currentMenuValue = SHIPIN;
+				changeColor(R.id.titlebar_shipin);
 				break;
 			// 专辑按钮
 			case R.id.titlebar_zhuanji:
-				changeColor(R.id.titlebar_zhuanji);
 				currentMenuValue = ZHUANJI;
+				changeColor(R.id.titlebar_zhuanji);
 				break;
 			// 菜单按钮
 			case R.id.titlebar_menu:
@@ -308,63 +316,104 @@ public class MainActivity extends Activity {
 					break;
 				}
 				break;
-				//分类按钮
+			// 分类按钮
 			case R.id.titlebar_fenlei:
-				/*getFragmentManager().beginTransaction()
-				.remove(fragment_fl).commit();*/
-				FragmentManager manager = getFragmentManager();
-				FragmentTransaction transaction = manager.beginTransaction();
-				transaction.setCustomAnimations(R.anim.enter, R.anim.out);
-				if(isShown){
-					transaction.remove(fragment_fl);
-					isShown = false;
-				}
-				else{
-					fragment_fl = new Fragment_fenlei();
-					transaction.add(R.id.frameLayout_fenlei, fragment_fl);
-					isShown = true;
-				}
-				transaction.commit();
+				showFenLei();
 				break;
 			}
 		}
 
 	}
-	
-	class PopupMenuListener implements OnMenuItemClickListener{
+
+	public void showFenLei() {
+		FragmentManager manager = getFragmentManager();
+		FragmentTransaction transaction = manager.beginTransaction();
+		transaction.setCustomAnimations(R.anim.enter, R.anim.out);
+		if (isShown) {
+			switch (currentMenuValue) {
+			case DUANZI:
+				if (fragment_fl_duanzi != null)
+					transaction.remove(fragment_fl_duanzi);
+				break;
+			case QUTU:
+				if (fragment_fl_qutu != null)
+					transaction.remove(fragment_fl_qutu);
+				break;
+			case SHIPIN:
+				if (fragment_fl_shipin != null)
+					transaction.remove(fragment_fl_shipin);
+				break;
+			// 美女
+			case ZHUANJI:
+				if (fragment_fl_meinv != null)
+					transaction.remove(fragment_fl_meinv);
+				break;
+			}
+			isShown = false;
+		} else {
+			switch (currentMenuValue) {
+			case DUANZI:
+				fragment_fl_duanzi = new Fragment_fenlei_duanzi();
+				transaction.replace(R.id.frameLayout_fenlei, fragment_fl_duanzi);
+				break;
+			case QUTU:
+				fragment_fl_qutu = new Fragment_fenlei_qutu();
+				transaction.replace(R.id.frameLayout_fenlei, fragment_fl_qutu);
+				break;
+			case SHIPIN:
+				fragment_fl_shipin = new Fragment_fenlei_shipin();
+				transaction.replace(R.id.frameLayout_fenlei, fragment_fl_shipin);
+				break;
+			// 美女
+			case ZHUANJI:
+				fragment_fl_meinv = new Fragment_fenlei_meinv();
+				transaction.replace(R.id.frameLayout_fenlei, fragment_fl_meinv);
+				break;
+			}
+			isShown = true;
+		}
+		transaction.commit();
+	}
+
+	class PopupMenuListener implements OnMenuItemClickListener {
 
 		@Override
 		public boolean onMenuItemClick(MenuItem item) {
 			switch (item.getItemId()) {
-			//随机穿越按钮
+			// 随机穿越按钮
 			case R.id.random:
-				Toast.makeText(MainActivity.this, "你点击了随机穿越按钮", Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainActivity.this, "你点击了随机穿越按钮",
+						Toast.LENGTH_SHORT).show();
 				break;
-				//选择日期按钮
+			// 选择日期按钮
 			case R.id.chooseDate:
-				Toast.makeText(MainActivity.this, "你点击了选择日期按钮", Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainActivity.this, "你点击了选择日期按钮",
+						Toast.LENGTH_SHORT).show();
 				break;
-				//收藏按钮
+			// 收藏按钮
 			case R.id.shoucang:
-				Toast.makeText(MainActivity.this, "你点击了收藏按钮", Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainActivity.this, "你点击了收藏按钮",
+						Toast.LENGTH_SHORT).show();
 				break;
-				//设置按钮
+			// 设置按钮
 			case R.id.set:
-				Toast.makeText(MainActivity.this, "你点击了设置按钮", Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainActivity.this, "你点击了设置按钮",
+						Toast.LENGTH_SHORT).show();
 				break;
-				//公告牌按钮
+			// 公告牌按钮
 			case R.id.gonggaopai:
-				Toast.makeText(MainActivity.this, "你点击了公告牌按钮", Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainActivity.this, "你点击了公告牌按钮",
+						Toast.LENGTH_SHORT).show();
 				break;
-				//精彩应用推荐按钮
+			// 精彩应用推荐按钮
 			case R.id.recommand:
-				//进入精彩应用推荐页面
+				// 进入精彩应用推荐页面
 				AppUnionSDK.getInstance(MainActivity.this).showAppList();
 				break;
 			}
 			return true;
 		}
-		
+
 	}
 
 	/**
@@ -434,11 +483,11 @@ public class MainActivity extends Activity {
 					}, false);
 		}
 	}
-	
+
 	/**
 	 * 显示图文广告
 	 */
-	public void showImageTextAd(){
+	public void showImageTextAd() {
 		if (mBaiduBanner_Image_Text == null
 				|| mBaiduBanner_Image_Text.getVisibility() == View.GONE) {
 

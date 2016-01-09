@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <Button
+            style="@style/fenleiStyle"
+            android:text="性感美女"
+            />
+
+        <Button
+            style="@style/fenleiStyle"
+            android:text="清纯可爱"
+             />
+
+        <Button
+            style="@style/fenleiStyle"
+            android:text="明星模特"
+             />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <Button
+            style="@style/fenleiStyle"
+            android:text="动漫美女"
+             />
+        <Button
+            style="@style/fenleiStyle"
+            android:text="丝袜美腿"
+             />
+
+    </LinearLayout>
+    
+    </LinearLayout>
+    
+    <Button 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00000000"
+        />
+
+</LinearLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <Button
+            style="@style/fenleiStyle"
+            android:text="倒霉熊"
+            />
+
+        <Button
+            style="@style/fenleiStyle"
+            android:text="傻冒在国外"
+             />
+
+        <Button
+            style="@style/fenleiStyle"
+            android:text="1000种死法"
+             />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <Button
+            style="@style/fenleiStyle"
+            android:text="老湿"
+             />
+        <Button
+            style="@style/fenleiStyle"
+            android:text="简笔笑画"
+             />
+        <Button
+            style="@style/fenleiStyle"
+            android:text="马马虎虎"
+             />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <Button
+            style="@style/fenleiStyle"
+            android:text="搞笑视频"
+             />
+
+    </LinearLayout>
+    
+    </LinearLayout>
+    
+    <Button 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00000000"
+        />
+
+</LinearLayout>

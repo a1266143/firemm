@@ -33,6 +33,7 @@
         <item name="android:background">#4a86e8</item>
         <item name="android:textSize">12sp</item>
         
+        
     </style>
-
+<!--  -->
 </resources>
