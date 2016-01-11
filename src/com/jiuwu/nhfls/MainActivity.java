@@ -12,12 +12,15 @@ import com.jiuwu.fragment.Fragment_fenlei_qutu;
 import com.jiuwu.fragment.Fragment_fenlei_shipin;
 import com.jiuwu.fragment.Fragment_qutu;
 import com.jiuwu.fragment.Fragment_shipin;
-import com.jiuwu.fragment.Fragment_zhuanji;
+import com.jiuwu.fragment.Fragment_meinv;
 import com.jiuwu.fragment.MenuFragment;
 import com.jiuwu.utils.NetUtils;
+import com.jiuwu.utils.StaticCode;
 import com.jiuwu.utils.Utils;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.FragmentManager;
@@ -43,7 +46,7 @@ public class MainActivity extends Activity {
 	private Fragment_duanzi fragment_dz;
 	private Fragment_qutu fragment_qt;
 	private Fragment_shipin fragment_sp;
-	private Fragment_zhuanji fragment_zj;
+	private Fragment_meinv fragment_zj;
 	private Fragment_fenlei_qutu fragment_fl_qutu;
 	private Fragment_fenlei_duanzi fragment_fl_duanzi;
 	private Fragment_fenlei_shipin fragment_fl_shipin;
@@ -52,6 +55,7 @@ public class MainActivity extends Activity {
 			titlebar_zhuanji, titlebar_fenlei;
 	private View menuBtn;
 
+	
 	private boolean isShown;
 
 	// 侧滑菜单FrameLayout
@@ -69,6 +73,20 @@ public class MainActivity extends Activity {
 	public final static String SERVICE_ACTION = "com.example.startService";
 	// baidubanner
 	private BaiduBanner mBaiduBanner_Image_Text;
+	
+	Handler handler = new Handler(){
+
+		@Override
+		public void handleMessage(Message msg) {
+			//网络错误
+			if(msg.what == StaticCode.MISTAKE_NET){
+				Toast.makeText(MainActivity.this, "网络错误", Toast.LENGTH_SHORT).show();
+			}else if(msg.what == StaticCode.MISTAKE_JSON){
+				Toast.makeText(MainActivity.this, "Json解析错误", Toast.LENGTH_SHORT).show();
+			}
+		}
+		
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +97,7 @@ public class MainActivity extends Activity {
 		// *****************显示插屏广告***********************
 		//showTableScreenAd();
 		// *****************显示图文广告***********************
-		showImageTextAd();
+		//showImageTextAd();
 		// ****************************************************
 		// 初始化
 		init();
@@ -90,18 +108,6 @@ public class MainActivity extends Activity {
 			Intent intent = new Intent(SERVICE_ACTION);
 			startService(intent);
 		}
-		// 连接网络
-		new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				// 连接网络获取json数据
-				String s = NetUtils.getJson(NetUtils.getUrl("视频", "" + 1,
-						"" + 1, "" + 20, "" + System.currentTimeMillis(),
-						"" + 1));
-				Log.e("json", s);
-			}
-		}).start();
 	}
 
 	/**
@@ -111,7 +117,7 @@ public class MainActivity extends Activity {
 		fragment_dz = new Fragment_duanzi();
 		fragment_qt = new Fragment_qutu();
 		fragment_sp = new Fragment_shipin();
-		fragment_zj = new Fragment_zhuanji();
+		fragment_zj = new Fragment_meinv();
 
 		getFragmentManager().beginTransaction()
 				.replace(R.id.frameLayout, fragment_dz).commit();
@@ -279,21 +285,25 @@ public class MainActivity extends Activity {
 			case R.id.titlebar_duanzi:
 				currentMenuValue = DUANZI;
 				changeColor(R.id.titlebar_duanzi);
+				shutDownFenLei();
 				break;
 			// 趣图按钮
 			case R.id.titlebar_qutu:
 				currentMenuValue = QUTU;
 				changeColor(R.id.titlebar_qutu);
+				shutDownFenLei();
 				break;
 			// 视频按钮
 			case R.id.titlebar_shipin:
 				currentMenuValue = SHIPIN;
 				changeColor(R.id.titlebar_shipin);
+				shutDownFenLei();
 				break;
 			// 专辑按钮
 			case R.id.titlebar_zhuanji:
 				currentMenuValue = ZHUANJI;
 				changeColor(R.id.titlebar_zhuanji);
+				shutDownFenLei();
 				break;
 			// 菜单按钮
 			case R.id.titlebar_menu:
@@ -325,6 +335,24 @@ public class MainActivity extends Activity {
 
 	}
 
+	
+	//点击第一级分类，根据当前点击的分类关闭其他一级分类的二级分类菜单
+	public void shutDownFenLei(){
+		FragmentTransaction transaction = getFragmentManager().beginTransaction();
+		if(fragment_fl_duanzi!=null)
+			transaction.remove(fragment_fl_duanzi);
+		if(fragment_fl_qutu!=null)
+			transaction.remove(fragment_fl_qutu);
+		if(fragment_fl_shipin!=null)
+			transaction.remove(fragment_fl_shipin);
+		if(fragment_fl_meinv!=null)
+			transaction.remove(fragment_fl_meinv);
+		transaction.setCustomAnimations(R.anim.enter, R.anim.out);
+		transaction.commit();
+		isShown = false;
+	}
+	
+	//显示分类下拉菜单
 	public void showFenLei() {
 		FragmentManager manager = getFragmentManager();
 		FragmentTransaction transaction = manager.beginTransaction();

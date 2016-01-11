@@ -21,15 +21,15 @@
         android:id="@+id/listitem_duanzi_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="女朋友是一个吃货，她说：对我来说没有难吃的东西，只有特别好吃，相对好吃，和不太好吃的东西"/>
     
     <ImageView
         android:id="@+id/listitem_duanzi_imageView" 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="fitCenter"
         android:visibility="gone"
-        android:src="@drawable/refresh"/>
+        />
 
     <RelativeLayout 
         android:layout_width="match_parent"

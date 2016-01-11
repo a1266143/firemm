@@ -20,20 +20,17 @@ import android.widget.TextView;
 public class Adapter_duanzi extends BaseAdapter {
 	
 	private Context context;
-	private int fragment_what;
-	public static final int FRAGMENT_DUANZI=0,FRAGMENT_QUTU=1;
-	//private List<DuanziBean> list;
+	private List<DuanziBean> list;
 	
 
-	public Adapter_duanzi(Context context,int fragment_what) {
+	public Adapter_duanzi(Context context,List<DuanziBean> list) {
 		this.context = context;
-		//this.list = list;
-		this.fragment_what = fragment_what;
+		this.list = list;
 	}
 
 	@Override
 	public int getCount() {
-		return 30;
+		return list.size();
 	}
 
 	@Override
@@ -59,28 +56,21 @@ public class Adapter_duanzi extends BaseAdapter {
 			viewHolder.shoucang = (Button) convertView.findViewById(R.id.listitem_duanzi_sc);
 			viewHolder.fenxiang = (Button) convertView.findViewById(R.id.listitem_duanzi_fx);
 			viewHolder.pinglun = (Button) convertView.findViewById(R.id.listitem_duanzi_pl);
-			viewHolder.imageView = (ImageView) convertView.findViewById(R.id.listitem_duanzi_imageView);
 			convertView.setTag(viewHolder);
 		}
 		viewHolder = (ViewHolder) convertView.getTag();
-		if(fragment_what == FRAGMENT_QUTU){
-			viewHolder.imageView.setVisibility(View.VISIBLE);
-			viewHolder.imageView.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View arg0) {
-					Intent intent = new Intent(context,ImageActivity.class);
-					context.startActivity(intent);
-				}
-			});
-		}
-			
+		DuanziBean db = list.get(position);
+		//设置发布时间
+		viewHolder.time.setText(db.getNewstime());
+		viewHolder.content.setText(db.getNewstext());	
+		viewHolder.pinglun.setText(db.getPlnum());
+		//顶，点赞
+		viewHolder.dianzan.setText(db.getDiggtop());
 		return convertView;
 	}
 	
 	class ViewHolder{
 		TextView time,content;
 		Button dianzan,shoucang,fenxiang,pinglun;
-		ImageView imageView;
 	}
 }
