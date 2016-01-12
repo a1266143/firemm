@@ -1,17 +1,22 @@
 package com.jiuwu.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.bumptech.glide.Glide;
 import com.example.nhfls.R;
 import com.jiuwu.bean.DuanziBean;
+import com.squareup.picasso.Picasso;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.Service;
 import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -20,14 +25,17 @@ import android.widget.TextView;
 
 public class Adapter_qutu extends BaseAdapter {
 
-	private Activity activity;
+	private Fragment fragment;
 	private List<DuanziBean> list;
+	private ViewHolder holder;
+	private List<ImageView> imageList;
 	
 
-	public Adapter_qutu(Activity activity, List<DuanziBean> list) {
+	public Adapter_qutu(Fragment fragment, List<DuanziBean> list) {
 		super();
-		this.activity = activity;
+		this.fragment = fragment;
 		this.list = list;
+		imageList = new ArrayList<ImageView>();
 	}
 
 	@Override
@@ -46,11 +54,10 @@ public class Adapter_qutu extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int arg0, View arg1, ViewGroup arg2) {
-		ViewHolder holder;
+	public View getView(final int arg0, View arg1, ViewGroup arg2) {
 		if(arg1==null){
 			holder = new ViewHolder();
-			LayoutInflater inflater = activity.getLayoutInflater();
+			LayoutInflater inflater = fragment.getActivity().getLayoutInflater();
 			arg1 = inflater.inflate(R.layout.listitem_duanzi, null);
 			holder.image = (ImageView) arg1.findViewById(R.id.listitem_duanzi_imageView);
 			holder.time = (TextView) arg1.findViewById(R.id.listitem_duanzi_time);
@@ -63,13 +70,19 @@ public class Adapter_qutu extends BaseAdapter {
 		holder.image.setVisibility(View.VISIBLE);
 		DuanziBean db = list.get(arg0);
 		//从网络获取图片
-		Glide.with(activity).load(db.getNewstext()).fitCenter().into(holder.image);
-		Log.e("newstext", db.getNewstext());
+		Glide.with(fragment).load(db.getNewstext()).error(R.drawable.refresh).dontAnimate().skipMemoryCache(false).override(230, 230).fitCenter().into(holder.image);
+		//Picasso.with(fragment.getActivity()).load(Uri.parse(db.getNewstext())).error(R.drawable.refresh).resize(200, 200).into(holder.image);
+		Log.e("url", db.getNewstext());
 		holder.time.setText(db.getNewstime());
-		holder.smalltext.setText(db.getSmalltext());
+		holder.smalltext.setText(db.getTitle());
 		holder.plnum.setText(db.getPlnum());
 		holder.diggtop.setText(db.getDiggtop());
+		imageList.add(holder.image);
 		return arg1;
+	}
+	
+	public ArrayList<ImageView> getImageList(){
+		return (ArrayList<ImageView>) imageList;
 	}
 	
 	class ViewHolder{

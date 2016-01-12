@@ -3,6 +3,7 @@ package com.jiuwu.fragment;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.bumptech.glide.Glide;
 import com.example.nhfls.R;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
@@ -18,9 +19,14 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -46,8 +52,17 @@ public class Fragment_qutu extends Fragment {
 			}else{
 				if(page==1){
 					arr = (ArrayList<DuanziBean>) msg.getData().getSerializable("ArrayList");
-					adapter = new Adapter_qutu(getActivity(), arr);
+					adapter = new Adapter_qutu(Fragment_qutu.this, arr);
 					listView.setAdapter(adapter);
+					/*listView.setOnItemClickListener(new OnItemClickListener() {
+
+						@Override
+						public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+								long arg3) {
+							Toast.makeText(getActivity(), "你点击了"+arg2+"项", Toast.LENGTH_SHORT).show();
+							
+						}
+					});*/
 				}
 				//如果是分页加载
 				else{
@@ -56,6 +71,20 @@ public class Fragment_qutu extends Fragment {
 				}
 			}
 			listView.onRefreshComplete();
+			listView.setOnScrollListener(new OnScrollListener() {
+				
+				@Override
+				public void onScrollStateChanged(AbsListView arg0, int arg1) {
+					
+				}
+				
+				@Override
+				public void onScroll(AbsListView arg0, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+					Log.e("第一个可见item下标", firstVisibleItem+"");
+					Log.e("可见item数目", visibleItemCount+"");
+					Log.e("item总和", totalItemCount+"");
+				}
+			});
 		}
 	};
 	@Override
