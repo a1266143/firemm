@@ -66,7 +66,7 @@ public class NetUtils {
 			@Override
 			public void run() {
 				//解析url
-				String url = getUrl(StaticCode.GIF, ""+1, ""+page, ""+20, ""+System.currentTimeMillis(), ""+1);
+				String url = getUrl(StaticCode.GIF, ""+1, ""+page, ""+15, ""+System.currentTimeMillis(), ""+1);
 				Log.e("url", url);
 				String json = null;
 				if((json = getJson(handler, url))!=null){

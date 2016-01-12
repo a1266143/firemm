@@ -2,34 +2,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000"
     tools:context=".ImageActivity" >
-    
-    <LinearLayout 
+
+    <LinearLayout
         android:id="@+id/lin"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:background="#000" >
-        
-        <Button
-            android:id="@+id/returnbtn" 
-            android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="返回"/>
-       </LinearLayout>
-    <ScrollView 
-        android:layout_above="@id/lin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="#000"
+        android:orientation="horizontal" >
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/lizi"
-        android:scaleType="fitXY"
-        />                                                                                                                                                                                                                                                                        
+        <ImageView
+            android:id="@+id/activity_image_iv"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+             />
+    </LinearLayout>
+    
+    <ProgressBar 
+        android:id="@+id/activity_image_pb"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
-    </ScrollView>
 </RelativeLayout>

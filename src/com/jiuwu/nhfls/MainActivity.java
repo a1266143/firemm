@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
 	private Fragment_fenlei_shipin fragment_fl_shipin;
 	private Fragment_fenlei_meinv fragment_fl_meinv;
 	private Button titlebar_duanzi, titlebar_qutu, titlebar_shipin,
-			titlebar_zhuanji, titlebar_fenlei;
+			titlebar_meinv, titlebar_fenlei;
 	private View menuBtn;
 
 	
@@ -102,7 +102,7 @@ public class MainActivity extends Activity {
 		// 初始化
 		init();
 		// 设置侧滑菜单相关属性
-		setDrawerLayout();
+		//setDrawerLayout();
 		// 启动service
 		if (!Utils.getInstance().isServiceRunning(this, SERVICE_ACTION)) {
 			Intent intent = new Intent(SERVICE_ACTION);
@@ -124,7 +124,7 @@ public class MainActivity extends Activity {
 		titlebar_duanzi = (Button) findViewById(R.id.titlebar_duanzi);
 		titlebar_qutu = (Button) findViewById(R.id.titlebar_qutu);
 		titlebar_shipin = (Button) findViewById(R.id.titlebar_shipin);
-		titlebar_zhuanji = (Button) findViewById(R.id.titlebar_zhuanji);
+		titlebar_meinv = (Button) findViewById(R.id.titlebar_meinv);
 		titlebar_fenlei = (Button) findViewById(R.id.titlebar_fenlei);
 		// 侧滑菜单设置
 		/*
@@ -139,7 +139,7 @@ public class MainActivity extends Activity {
 		titlebar_duanzi.setOnClickListener(listener);
 		titlebar_qutu.setOnClickListener(listener);
 		titlebar_shipin.setOnClickListener(listener);
-		titlebar_zhuanji.setOnClickListener(listener);
+		titlebar_meinv.setOnClickListener(listener);
 		menuBtn.setOnClickListener(listener);
 		titlebar_fenlei.setOnClickListener(listener);
 	}
@@ -147,7 +147,7 @@ public class MainActivity extends Activity {
 	/**
 	 * 设置侧滑菜单
 	 */
-	public void setDrawerLayout() {
+	/*public void setDrawerLayout() {
 		// 设置侧滑菜单的fragment以及阴影
 		drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
 		drawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
@@ -155,7 +155,7 @@ public class MainActivity extends Activity {
 		MenuFragment mf = new MenuFragment();
 		getFragmentManager().beginTransaction().add(R.id.menuFrameLayout, mf)
 				.commit();
-	}
+	}*/
 
 	/**
 	 * 点击某个按钮会改变颜色,并且改变字体颜色
@@ -172,7 +172,7 @@ public class MainActivity extends Activity {
 					.setBackgroundResource(R.drawable.leftbtn_press_true);
 			titlebar_qutu.setBackgroundResource(R.drawable.topbuttonback);
 			titlebar_shipin.setBackgroundResource(R.drawable.topbuttonback);
-			titlebar_zhuanji
+			titlebar_meinv
 					.setBackgroundResource(R.drawable.rightbtn_press_false);
 			titlebar_duanzi.setTextColor(getResources().getColor(
 					R.color.text_selected_true));
@@ -180,7 +180,7 @@ public class MainActivity extends Activity {
 					R.color.text_selected_false));
 			titlebar_shipin.setTextColor(getResources().getColor(
 					R.color.text_selected_false));
-			titlebar_zhuanji.setTextColor(getResources().getColor(
+			titlebar_meinv.setTextColor(getResources().getColor(
 					R.color.text_selected_false));
 			getFragmentManager().beginTransaction()
 					.replace(R.id.frameLayout, fragment_dz).commit();
@@ -192,7 +192,7 @@ public class MainActivity extends Activity {
 					.setBackgroundResource(R.drawable.leftbtn_press_false);
 			titlebar_qutu.setBackgroundResource(R.drawable.topbtnpress_true);
 			titlebar_shipin.setBackgroundResource(R.drawable.topbuttonback);
-			titlebar_zhuanji
+			titlebar_meinv
 					.setBackgroundResource(R.drawable.rightbtn_press_false);
 			titlebar_duanzi.setTextColor(getResources().getColor(
 					R.color.text_selected_false));
@@ -200,7 +200,7 @@ public class MainActivity extends Activity {
 					R.color.text_selected_true));
 			titlebar_shipin.setTextColor(getResources().getColor(
 					R.color.text_selected_false));
-			titlebar_zhuanji.setTextColor(getResources().getColor(
+			titlebar_meinv.setTextColor(getResources().getColor(
 					R.color.text_selected_false));
 			getFragmentManager().beginTransaction()
 					.replace(R.id.frameLayout, fragment_qt).commit();
@@ -211,7 +211,7 @@ public class MainActivity extends Activity {
 					.setBackgroundResource(R.drawable.leftbtn_press_false);
 			titlebar_qutu.setBackgroundResource(R.drawable.topbuttonback);
 			titlebar_shipin.setBackgroundResource(R.drawable.topbtnpress_true);
-			titlebar_zhuanji
+			titlebar_meinv
 					.setBackgroundResource(R.drawable.rightbtn_press_false);
 			titlebar_duanzi.setTextColor(getResources().getColor(
 					R.color.text_selected_false));
@@ -219,18 +219,18 @@ public class MainActivity extends Activity {
 					R.color.text_selected_false));
 			titlebar_shipin.setTextColor(getResources().getColor(
 					R.color.text_selected_true));
-			titlebar_zhuanji.setTextColor(getResources().getColor(
+			titlebar_meinv.setTextColor(getResources().getColor(
 					R.color.text_selected_false));
 			getFragmentManager().beginTransaction()
 					.replace(R.id.frameLayout, fragment_sp).commit();
 			break;
 		// 专辑按钮
-		case R.id.titlebar_zhuanji:
+		case R.id.titlebar_meinv:
 			titlebar_duanzi
 					.setBackgroundResource(R.drawable.leftbtn_press_false);
 			titlebar_qutu.setBackgroundResource(R.drawable.topbuttonback);
 			titlebar_shipin.setBackgroundResource(R.drawable.topbuttonback);
-			titlebar_zhuanji
+			titlebar_meinv
 					.setBackgroundResource(R.drawable.rightbtn_press_true);
 			titlebar_duanzi.setTextColor(getResources().getColor(
 					R.color.text_selected_false));
@@ -238,7 +238,7 @@ public class MainActivity extends Activity {
 					R.color.text_selected_false));
 			titlebar_shipin.setTextColor(getResources().getColor(
 					R.color.text_selected_false));
-			titlebar_zhuanji.setTextColor(getResources().getColor(
+			titlebar_meinv.setTextColor(getResources().getColor(
 					R.color.text_selected_true));
 			getFragmentManager().beginTransaction()
 					.replace(R.id.frameLayout, fragment_zj).commit();
@@ -300,9 +300,9 @@ public class MainActivity extends Activity {
 				shutDownFenLei();
 				break;
 			// 专辑按钮
-			case R.id.titlebar_zhuanji:
+			case R.id.titlebar_meinv:
 				currentMenuValue = ZHUANJI;
-				changeColor(R.id.titlebar_zhuanji);
+				changeColor(R.id.titlebar_meinv);
 				shutDownFenLei();
 				break;
 			// 菜单按钮

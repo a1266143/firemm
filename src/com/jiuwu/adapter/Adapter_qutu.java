@@ -6,12 +6,14 @@ import java.util.List;
 import com.bumptech.glide.Glide;
 import com.example.nhfls.R;
 import com.jiuwu.bean.DuanziBean;
+import com.jiuwu.nhfls.ImageActivity;
 import com.squareup.picasso.Picasso;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.Service;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +24,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Adapter_qutu extends BaseAdapter {
 
@@ -70,9 +73,19 @@ public class Adapter_qutu extends BaseAdapter {
 		holder.image.setVisibility(View.VISIBLE);
 		DuanziBean db = list.get(arg0);
 		//从网络获取图片
-		Glide.with(fragment).load(db.getNewstext()).error(R.drawable.refresh).dontAnimate().skipMemoryCache(false).override(230, 230).fitCenter().into(holder.image);
-		//Picasso.with(fragment.getActivity()).load(Uri.parse(db.getNewstext())).error(R.drawable.refresh).resize(200, 200).into(holder.image);
+		//Glide.with(fragment).load(db.getNewstext()).error(R.drawable.refresh).dontAnimate().skipMemoryCache(false).override(230, 230).fitCenter().into(holder.image);
+		Picasso.with(fragment.getActivity()).load(Uri.parse(db.getNewstext())).error(R.drawable.refresh).into(holder.image);
 		Log.e("url", db.getNewstext());
+		holder.image.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(fragment.getActivity(),ImageActivity.class);
+				intent.putExtra("url", list.get(arg0).getNewstext());
+				fragment.getActivity().startActivity(intent);
+				
+			}
+		});
 		holder.time.setText(db.getNewstime());
 		holder.smalltext.setText(db.getTitle());
 		holder.plnum.setText(db.getPlnum());

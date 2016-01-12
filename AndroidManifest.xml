@@ -81,7 +81,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name="com.jiuwu.nhfls.ImageActivity" >
+        <activity android:name="com.jiuwu.nhfls.ImageActivity" 
+            android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
         </activity>
 
         <!-- ******************百度百通广告相关组件***************** -->

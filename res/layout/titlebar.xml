@@ -38,10 +38,10 @@
             android:background="@drawable/topbuttonback"
             android:text="@string/shipin"/>
         <Button 
-            android:id="@+id/titlebar_zhuanji"
+            android:id="@+id/titlebar_meinv"
             style="@style/topbtnStyle"
             android:background="@drawable/rightbtn_press_false"
-            android:text="@string/zhuanji"/>
+            android:text="@string/meinv"/>
     </LinearLayout>
     
     
