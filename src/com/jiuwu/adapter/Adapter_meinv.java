@@ -10,10 +10,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Adapter_zhuanji extends BaseAdapter {
+public class Adapter_meinv extends BaseAdapter {
 
 	private Context context;
-	public Adapter_zhuanji(Context context){
+	public Adapter_meinv(Context context){
 		this.context = context;
 	}
 	
@@ -38,7 +38,7 @@ public class Adapter_zhuanji extends BaseAdapter {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		if(convertView == null){
 			viewHolder = new ViewHolder();
-			convertView = inflater.inflate(R.layout.listitem_zhuanji, null);
+			convertView = inflater.inflate(R.layout.listitem_meinv, null);
 			viewHolder.imageView = (ImageView) convertView.findViewById(R.id.listitem_zhuanji_imageview);
 			viewHolder.title = (TextView) convertView.findViewById(R.id.listitem_zhuanji_title);
 			viewHolder.time = (TextView) convertView.findViewById(R.id.listitem_zhuanji_time);

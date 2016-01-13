@@ -3,23 +3,78 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
+
+    <include
+        android:id="@+id/titlebar01"
+        android:layout_alignParentTop="true"
+        layout="@layout/titlebar01" />
+
+    <LinearLayout
+        android:id="@+id/activity_main_lin" 
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@id/titlebar01"
+        android:background="#ffffff"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/activity_main_btn_zx"
+            style="@style/titlebar"
+            android:text="@string/zuixin"
+            android:textColor="#b60a0a" />
+
+        <Button
+            android:id="@+id/activity_main_btn_dz"
+            style="@style/titlebar"
+            android:text="@string/duanzi" />
+
+        <Button
+            android:id="@+id/activity_main_btn_qt"
+            style="@style/titlebar"
+            android:text="@string/qutu" />
+
+        <Button
+            android:id="@+id/activity_main_btn_sp"
+            style="@style/titlebar"
+            android:text="@string/shipin" />
+
+        <Button
+            android:id="@+id/activity_main_btn_mv"
+            style="@style/titlebar"
+            android:text="@string/meinv" />
+    </LinearLayout>
     
+    <ImageView 
+        android:id="@+id/activity_main_tabiv"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#b60a0a"/>
+    </LinearLayout>
     
-    <include 
+
+    <include
         android:id="@+id/titlebar"
-        layout="@layout/titlebar"/>
-    
-    
+        android:layout_below="@id/titlebar01"
+        layout="@layout/titlebar"
+        android:visibility="gone" />
+
+    <!--
     <LinearLayout 
         android:id="@+id/bottombar"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:orientation="horizontal"
         android:background="#aaa"
+        android:visibility="gone"
         android:layout_alignParentBottom="true"
         >
         
         <Button 
+            android:id="@+id/activity_main_zuixin"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -30,21 +85,21 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:text="@string/duanzi"/>
+        
+        <Button 
+            android:id="@+id/activity_main_qutu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="@string/qutu"/>
         
         <Button 
-            android:id="@+id/activity_main_duanzi"
+            android:id="@+id/activity_main_shipin"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/shipin"/>
-        
-        <Button 
-            android:id="@+id/activity_main_duanzi"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/duanzi"/>
         
         <Button 
             android:id="@+id/activity_main_meinv"
@@ -54,23 +109,33 @@
             android:text="@string/meinv"/>
         
     </LinearLayout>
-    
-    <FrameLayout
-        android:id="@+id/frameLayout" 
+    -->
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/activity_main_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/titlebar"
-        android:layout_above="@id/bottombar"
-         />
+        android:layout_below="@id/activity_main_lin" />
     
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/activity_main_lin"
+        android:src="@drawable/bok"
+        android:scaleType="fitXY"/>
+    
+    
+
     <FrameLayout
-        android:id="@+id/frameLayout_fenlei" 
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/titlebar"
-        android:layout_above="@id/bottombar"
-         />
+        android:layout_below="@id/activity_main_lin" />
 
+    <FrameLayout
+        android:id="@+id/frameLayout_fenlei"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/activity_main_lin" />
 
-    
 </RelativeLayout>

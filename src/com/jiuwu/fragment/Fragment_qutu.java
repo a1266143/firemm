@@ -9,16 +9,15 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.jiuwu.adapter.Adapter_duanzi;
 import com.jiuwu.adapter.Adapter_qutu;
 import com.jiuwu.bean.DuanziBean;
 import com.jiuwu.utils.NetUtils;
 import com.jiuwu.utils.StaticCode;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;

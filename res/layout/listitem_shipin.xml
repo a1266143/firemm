@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="5dp"
-    android:background="@drawable/listitemback"
+    android:background="#ffffff"
     android:orientation="horizontal" >
     
     <ImageView 
@@ -54,6 +54,8 @@
         android:id="@+id/listitem_shipin_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:singleLine="true"
         android:textSize="12sp"
         android:textColor="#aaa"

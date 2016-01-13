@@ -4,17 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.nhfls.R;
 import com.jiuwu.bean.DuanziBean;
 import com.jiuwu.nhfls.ImageActivity;
 import com.squareup.picasso.Picasso;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +22,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Adapter_qutu extends BaseAdapter {
 
@@ -73,7 +70,7 @@ public class Adapter_qutu extends BaseAdapter {
 		holder.image.setVisibility(View.VISIBLE);
 		DuanziBean db = list.get(arg0);
 		//从网络获取图片
-		//Glide.with(fragment).load(db.getNewstext()).error(R.drawable.refresh).dontAnimate().skipMemoryCache(false).override(230, 230).fitCenter().into(holder.image);
+		//Glide.with(fragment).load(db.getNewstext()).error(R.drawable.refresh).crossFade().diskCacheStrategy(DiskCacheStrategy.NONE).override(50, 50).fitCenter().into(holder.image);
 		Picasso.with(fragment.getActivity()).load(Uri.parse(db.getNewstext())).error(R.drawable.refresh).into(holder.image);
 		Log.e("url", db.getNewstext());
 		holder.image.setOnClickListener(new OnClickListener() {

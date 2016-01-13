@@ -142,16 +142,6 @@ public class Utils {
 	    }
 	    return false;
 	}
-	/**
-	 * 连接网络获得json文本String并且返回
-	 * @param url 网址
-	 * @param handler 主线程的handler
-	 * @return json String
-	 */
-	public String getJson(String url,Handler handler){
-		
-		return null;
-	}
 	
 	/**
 	 * 获取屏幕宽度
