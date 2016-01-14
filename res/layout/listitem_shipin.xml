@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="60dp"
     android:padding="5dp"
     android:background="#ffffff"
     android:orientation="horizontal" >
     
     <ImageView 
         android:id="@+id/listitem_shipin_imageview"
-        android:layout_width="95dp"
-        android:layout_height="55dp"
-        android:scaleType="center"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:scaleType="fitXY"
        
         android:src="@drawable/refresh"/>
     
@@ -18,8 +18,8 @@
         android:id="@+id/listitem_shipin_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:lineSpacingExtra="4dp"
         android:layout_marginLeft="10dp"
-        android:lineSpacingExtra="2dp"
         android:gravity="left"
         android:text="来了！《X战警：天启》首款中字预告片大首播！测试长度文字测试长度文字测试长度文字"
         android:ellipsize="end"
@@ -54,12 +54,10 @@
         android:id="@+id/listitem_shipin_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:singleLine="true"
         android:textSize="12sp"
         android:textColor="#aaa"
         android:drawableLeft="@drawable/play"
+        android:drawablePadding="5dp"
         android:gravity="center"
         android:layout_alignBottom="@id/listitem_shipin_imageview"
         android:layout_toLeftOf="@id/listitem_shipin_pinglun"

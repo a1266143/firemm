@@ -8,7 +8,8 @@ public class StaticCode {
 	public static final int MISTAKE_NET = 0x123;
 	public static final int MISTAKE_JSON = 0x124;
 	
-	public static final String LENGXIAOHUA = "冷笑话";
+	public static final String DUANZI = "段子";
 	public static final String TUPIAN = "图片";
-	public static final String GIF = "GIF动态图";
+	public static final String MEINV = "美女";
+	public static final String SHIPIN = "视频";
 }

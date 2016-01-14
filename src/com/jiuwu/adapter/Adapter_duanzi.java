@@ -53,7 +53,11 @@ public class Adapter_duanzi extends BaseAdapter {
 			viewHolder.time = (TextView) convertView.findViewById(R.id.listitem_duanzi_time);
 			viewHolder.content = (TextView) convertView.findViewById(R.id.listitem_duanzi_content);
 			viewHolder.dianzan = (Button) convertView.findViewById(R.id.listitem_duanzi_dz);
-			viewHolder.shoucang = (Button) convertView.findViewById(R.id.listitem_duanzi_sc);
+			viewHolder.onclick = (TextView) convertView.findViewById(R.id.listitem_duanzi_timeLiulan);
+			//踩
+			viewHolder.diggdown = (Button) convertView.findViewById(R.id.listitem_duanzi_cai);
+			//收藏按钮
+			//viewHolder.shoucang = (Button) convertView.findViewById(R.id.listitem_duanzi_sc);
 			viewHolder.fenxiang = (Button) convertView.findViewById(R.id.listitem_duanzi_fx);
 			viewHolder.pinglun = (Button) convertView.findViewById(R.id.listitem_duanzi_pl);
 			convertView.setTag(viewHolder);
@@ -64,13 +68,17 @@ public class Adapter_duanzi extends BaseAdapter {
 		viewHolder.time.setText(db.getNewstime());
 		viewHolder.content.setText(db.getNewstext());	
 		viewHolder.pinglun.setText(db.getPlnum());
-		//顶，点赞
+		//点赞
 		viewHolder.dianzan.setText(db.getDiggtop());
+		//点击次数
+		viewHolder.onclick.setText(db.getOnclick()+"次");
+		//踩
+		viewHolder.diggdown.setText(db.getDiggdown());
 		return convertView;
 	}
 	
 	class ViewHolder{
-		TextView time,content;
-		Button dianzan,shoucang,fenxiang,pinglun;
+		TextView time,content,onclick;
+		Button dianzan,shoucang,fenxiang,pinglun,diggdown;
 	}
 }

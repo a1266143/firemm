@@ -26,7 +26,6 @@ public class NetUtils {
 	  * 解析分类的url
 	  */
 	 @SuppressLint("DefaultLocale")
-	 /**,String haspic*/
 	public static String getUrl(String classname,String haspic,String page,String pagesize,String time,String type){
 		 //约定好的secret
 		 String secret = "123$%^+KO.SLmomo!99nn%jn";
@@ -47,7 +46,7 @@ public class NetUtils {
 			@Override
 			public void run() {
 				//1.解析url
-				String url = getUrl(StaticCode.LENGXIAOHUA,""+0,""+page, ""+20, ""+System.currentTimeMillis(), ""+1);
+				String url = getUrl(StaticCode.DUANZI,""+0,""+page, ""+20, ""+System.currentTimeMillis(), ""+1);
 				//连接网络获取json数据
 				String json = null;
 				if((json = getJson(handler, url))!=null){
@@ -56,7 +55,25 @@ public class NetUtils {
 				}
 			}
 		}).start();
-		 
+	 }
+	 
+	 //获取视频ArrayList
+	 public static void NetForShiPin(final Handler handler,final int page){
+		 new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					//1.解析url
+					String url = getUrl(StaticCode.SHIPIN,""+0,""+page, ""+20, ""+System.currentTimeMillis(), ""+1);
+					//连接网络获取json数据
+					String json = null;
+					if((json = getJson(handler, url))!=null){
+						Log.e("json1", json);
+						//解析并发送消息给相应的handler
+						Utils.getInstance().anaDuanziArr(handler, json);
+					}
+				}
+			}).start();
 	 }
 	 
 	 //获取图片ArrayList
@@ -66,8 +83,7 @@ public class NetUtils {
 			@Override
 			public void run() {
 				//解析url
-				String url = getUrl(StaticCode.GIF, ""+1, ""+page, ""+15, ""+System.currentTimeMillis(), ""+1);
-				Log.e("url", url);
+				String url = getUrl(StaticCode.TUPIAN, ""+1, ""+page, ""+20, ""+System.currentTimeMillis(), ""+1);
 				String json = null;
 				if((json = getJson(handler, url))!=null){
 					//解析并发送消息给相应的handler

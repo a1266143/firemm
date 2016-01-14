@@ -27,6 +27,17 @@ public class Utils {
 	}
 	
 	/**
+	 * 将给定的url解析成指定的id，然后利用sdk相关api进行播放
+	 * @param str 传入的优酷视频url
+	 * @return 返回这个视频的id
+	 */
+	public static String analysisURL(String str){
+		String[] strs = str.split("/");
+		String s = strs[strs.length-2];
+		return s;
+	}
+	
+	/**
 	 * MD5加密算法
 	 * @param s传入字符串
 	 * @return 返回加密后的MD5值
@@ -71,11 +82,21 @@ public class Utils {
 				DuanziBean db = new DuanziBean();
 				JSONObject j = list.getJSONObject(i);
 				db.setId(j.getString("id"));
+				db.setClassid(j.getString("classid"));
+				//时间
 				db.setNewstime(j.getString("newstime3"));
+				//内容
 				db.setNewstext(j.getString("newstext"));
 				db.setPlnum(j.getString("plnum"));
 				db.setTitle(j.getString("title"));
+				//顶
 				db.setDiggtop(j.getString("diggtop"));
+				//踩
+				db.setDiggdown(j.getString("diggdown"));
+				//浏览次数
+				db.setOnclick(j.getString("onclick"));
+				//titlepic
+				db.setTitlepic(j.getString("titlepic"));
 				arr.add(db);
 			}
 			//发送arrlist给handler
@@ -98,6 +119,7 @@ public class Utils {
 				JSONObject j = list.getJSONObject(i);
 				DuanziBean db = new DuanziBean();
 				db.setId(j.getString("id"));
+				db.setClassid(j.getString("classid"));
 				db.setDiggtop(j.getString("diggtop"));
 				db.setDiggdown(j.getString("diggdown"));
 				db.setNewstext(j.getString("newstext"));
@@ -106,6 +128,7 @@ public class Utils {
 				db.setTitle(j.getString("title"));
 				db.setTitlepic(j.getString("titlepic"));
 				db.setSmalltext(j.getString("smalltext"));
+				db.setOnclick(j.getString("onclick"));
 				arr.add(db);
 			}
 			sendMessage(handler, arr);

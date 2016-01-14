@@ -1,8 +1,13 @@
 package com.jiuwu.adapter;
 
+import java.util.List;
+
 import com.example.nhfls.R;
+import com.jiuwu.bean.DuanziBean;
+import com.squareup.picasso.Picasso;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +18,15 @@ import android.widget.TextView;
 public class Adapter_shipin extends BaseAdapter {
 
 	private Context context;
-	public Adapter_shipin(Context context){
+	private List<DuanziBean> list;
+	public Adapter_shipin(Context context,List<DuanziBean> list){
 		this.context = context;
+		this.list = list;
 	}
 	
 	@Override
 	public int getCount() {
-		return 20;
+		return list.size();
 	}
 
 	@Override
@@ -47,6 +54,12 @@ public class Adapter_shipin extends BaseAdapter {
 			convertView.setTag(viewHolder);
 		}
 		viewHolder = (ViewHolder) convertView.getTag();
+		DuanziBean db = list.get(position);
+		Picasso.with(context).load(Uri.parse(db.getTitlepic())).into(viewHolder.imageView);
+		viewHolder.title.setText(db.getTitle());
+		viewHolder.time.setText(db.getNewstime());
+		viewHolder.pinglun.setText(db.getPlnum());
+		viewHolder.playNumber.setText(db.getOnclick()+"次");
 		return convertView;
 	}
 	

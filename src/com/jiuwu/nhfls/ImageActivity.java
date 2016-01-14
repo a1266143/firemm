@@ -43,7 +43,7 @@ public class ImageActivity extends Activity {
 				pb.setVisibility(View.GONE);
 				return false;
 			}
-		}).override(50, 50).fitCenter().into(iv);
+		}).fitCenter().into(iv);
 		findViewById(R.id.lin).setOnClickListener(new OnClickListener() {
 			
 			@Override

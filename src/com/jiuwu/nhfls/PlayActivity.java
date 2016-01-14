@@ -9,21 +9,25 @@ import com.youku.player.base.YoukuPlayerView;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.res.Configuration;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 public class PlayActivity extends Activity {
 
 	private YoukuPlayerView playerView;
 	private YoukuBasePlayerManager manager;
 	private YoukuPlayer player;
+	private String vid;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_play);
+		vid = getIntent().getStringExtra("vid");
 		playerView = (YoukuPlayerView) findViewById(R.id.full_holder);
 		manager = new YoukuBasePlayerManager(this) {
 
@@ -46,7 +50,8 @@ public class PlayActivity extends Activity {
 				PlayActivity.this.player = player;
 
 				// 通过ID播放视频
-				PlayActivity.this.player.playVideo("XNzQ3ODU5OTgw");
+				if(vid!=null||!vid.equals(""))
+					PlayActivity.this.player.playVideo(vid);
 			}
 
 			@Override

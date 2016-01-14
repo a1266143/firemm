@@ -60,19 +60,25 @@ public class Adapter_qutu extends BaseAdapter {
 			LayoutInflater inflater = fragment.getActivity().getLayoutInflater();
 			arg1 = inflater.inflate(R.layout.listitem_duanzi, null);
 			holder.image = (ImageView) arg1.findViewById(R.id.listitem_duanzi_imageView);
+			holder.gif = (ImageView) arg1.findViewById(R.id.listitem_duanzi_gif);
 			holder.time = (TextView) arg1.findViewById(R.id.listitem_duanzi_time);
-			holder.smalltext = (TextView) arg1.findViewById(R.id.listitem_duanzi_content);
+			holder.title = (TextView) arg1.findViewById(R.id.listitem_duanzi_content);
 			holder.diggtop = (Button) arg1.findViewById(R.id.listitem_duanzi_dz);
 			holder.plnum = (Button) arg1.findViewById(R.id.listitem_duanzi_pl);
+			holder.diggdown = (Button) arg1.findViewById(R.id.listitem_duanzi_cai);
+			holder.onclick = (TextView) arg1.findViewById(R.id.listitem_duanzi_timeLiulan);
 			arg1.setTag(holder);
 		}
 		holder = (ViewHolder) arg1.getTag();
 		holder.image.setVisibility(View.VISIBLE);
 		DuanziBean db = list.get(arg0);
+		//如果是动态图片，将gif图标显示出来
+		/*if(db.getNewstext().endsWith(".gif")){
+			holder.gif.setVisibility(View.VISIBLE);
+		}*/
 		//从网络获取图片
-		//Glide.with(fragment).load(db.getNewstext()).error(R.drawable.refresh).crossFade().diskCacheStrategy(DiskCacheStrategy.NONE).override(50, 50).fitCenter().into(holder.image);
-		Picasso.with(fragment.getActivity()).load(Uri.parse(db.getNewstext())).error(R.drawable.refresh).into(holder.image);
-		Log.e("url", db.getNewstext());
+		Glide.with(fragment).load(db.getNewstext()).error(R.drawable.refresh).crossFade().diskCacheStrategy(DiskCacheStrategy.NONE).fitCenter().into(holder.image);
+		//Picasso.with(fragment.getActivity()).load(Uri.parse(db.getNewstext())).error(R.drawable.refresh).into(holder.image);
 		holder.image.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -84,9 +90,11 @@ public class Adapter_qutu extends BaseAdapter {
 			}
 		});
 		holder.time.setText(db.getNewstime());
-		holder.smalltext.setText(db.getTitle());
+		holder.title.setText(db.getTitle());
 		holder.plnum.setText(db.getPlnum());
 		holder.diggtop.setText(db.getDiggtop());
+		holder.diggdown.setText(db.getDiggdown());
+		holder.onclick.setText(db.getOnclick()+"次");
 		imageList.add(holder.image);
 		return arg1;
 	}
@@ -96,9 +104,9 @@ public class Adapter_qutu extends BaseAdapter {
 	}
 	
 	class ViewHolder{
-		ImageView image;
-		TextView time,smalltext;
-		Button plnum,diggtop;
+		ImageView image,gif;
+		TextView time,title,onclick;
+		Button plnum,diggtop,diggdown;
 	}
 
 }

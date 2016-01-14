@@ -79,9 +79,9 @@ public class Fragment_qutu extends Fragment {
 				
 				@Override
 				public void onScroll(AbsListView arg0, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-					Log.e("第一个可见item下标", firstVisibleItem+"");
+					/*Log.e("第一个可见item下标", firstVisibleItem+"");
 					Log.e("可见item数目", visibleItemCount+"");
-					Log.e("item总和", totalItemCount+"");
+					Log.e("item总和", totalItemCount+"");*/
 				}
 			});
 		}

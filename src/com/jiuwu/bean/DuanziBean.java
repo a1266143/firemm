@@ -1,7 +1,10 @@
 package com.jiuwu.bean;
 
 public class DuanziBean {
+	//图文ID编号/内容详情ID
 	private String id;
+	//所属栏目ID
+	private String classid;
 	private String title;
 	//评论数
 	private String plnum;
@@ -12,8 +15,21 @@ public class DuanziBean {
 	private String diggdown;
 	private String titlepic;
 	private String smalltext;
+	private String onclick;
 	
 	
+	public String getClassid() {
+		return classid;
+	}
+	public void setClassid(String classid) {
+		this.classid = classid;
+	}
+	public String getOnclick() {
+		return onclick;
+	}
+	public void setOnclick(String onclick) {
+		this.onclick = onclick;
+	}
 	public String getSmalltext() {
 		return smalltext;
 	}
